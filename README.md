@@ -14,10 +14,10 @@ The project has the following structure:
 ```
 
 # How to install?
-1. Clone this project to `/home/<user>/scripts/` with git. Create the folder `scripts` if it doesn't exist already.
+1. Clone this project to `/home/<user>/scripts/` with `git@github.com:shadowlegend551/initc.git`. Create the folder `scripts` if it doesn't exist already.
 2. Append the following line to your shell's config file (~/.bashrc, ~/.cshrc, etc.): `alias initc="/home/<user/scripts/initc/initc.sh>"`. This creates a persistent alias so that you don't have to type the full path to the program every time you want to run it.
 3. This program's default shell is bash. You can change it by modifying the shebang `#!/bin/bash` in the beginning of `initc.sh`.
-4. Run with `initc <project-name>`.
+4. Run with `initc <new-project-name>`.
 
 # How to build projects?
 1. Make sure you have `make` installed.
