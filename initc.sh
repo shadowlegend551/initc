@@ -27,7 +27,7 @@ function log_file_creation() {
 
 # CONSTANT DEFINITIONS
 USER_NAME=$(whoami)
-PROJECT_NAME=$1
+PROJECT_NAME="$1"
 SUBFOLDERS=("bin" "build" "include" "src")
 MAKEFILE_PATH="/home/${USER_NAME}/scripts/initc/resources/makefile"
 MAIN_FILE_PATH="/home/${USER_NAME}/scripts/initc/resources/main.c"
@@ -39,7 +39,7 @@ MAIN_FILE_ERROR="Error: file '${MAIN_FILE_PATH}' not found."
 
 
 # Test for errors.
-if test -d $PROJECT_NAME; then
+if test -d "$PROJECT_NAME"; then
     handle_error "$PROJECT_DIRECTORY_ERROR"
 elif ! test -f $MAKEFILE_PATH; then
     handle_error "$MAKEFILE_ERROR"
@@ -48,9 +48,9 @@ elif ! test -f $MAIN_FILE_PATH; then
 fi
 
 
-mkdir $PROJECT_NAME
+mkdir "$PROJECT_NAME"
 log_folder_creation "$PROJECT_NAME"
-cd $PROJECT_NAME
+cd "$PROJECT_NAME"
 echo "changed pwd to $(pwd)"
 
 
