@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+# FUNCTION DEFINITIONS
 function handle_error() {
     ERROR_MESSAGE=$1
 
@@ -24,15 +25,20 @@ function log_file_creation() {
 }
 
 
+# CONSTANT DEFINITIONS
 USER_NAME=$(whoami)
 PROJECT_NAME=$1
+SUBFOLDERS=("bin" "build" "include" "src")
 MAKEFILE_PATH="/home/${USER_NAME}/scripts/initc/resources/makefile"
 MAIN_FILE_PATH="/home/${USER_NAME}/scripts/initc/resources/main.c"
+
 
 PROJECT_DIRECTORY_ERROR="Error: directory '${PROJECT_NAME}' already exists."
 MAKEFILE_ERROR="Error: file '${MAKEFILE_PATH}' not found."
 MAIN_FILE_ERROR="Error: file '${MAIN_FILE_PATH}' not found."
 
+
+# Test for errors.
 if test -d $PROJECT_NAME; then
     handle_error "$PROJECT_DIRECTORY_ERROR"
 elif ! test -f $MAKEFILE_PATH; then
@@ -47,14 +53,12 @@ log_folder_creation "$PROJECT_NAME"
 cd $PROJECT_NAME
 echo "changed pwd to $(pwd)"
 
-mkdir src
-log_folder_creation src
-mkdir include
-log_folder_creation include
-mkdir build
-log_folder_creation build
-mkdir bin
-log_folder_creation bin
+
+for folder in ${SUBFOLDERS[@]}; do
+    mkdir $folder
+    log_folder_creation $folder
+done
+
 
 cp $MAKEFILE_PATH .
 log_file_creation makefile
