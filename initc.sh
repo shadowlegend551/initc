@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 function handle_error() {
     ERROR_MESSAGE=$1
 
@@ -7,6 +8,21 @@ function handle_error() {
     echo "Exiting..."
     exit 1
 }
+
+
+function log_folder_creation() {
+    RELATIVE_FOLDER_PATH=$1
+
+    echo "Created folder $(pwd)/$1"
+}
+
+
+function log_file_creation() {
+    RELATIVE_FILE_PATH=$1
+
+    echo "Created file $(pwd)/$1"
+}
+
 
 USER_NAME=$(whoami)
 PROJECT_NAME=$1
@@ -27,13 +43,23 @@ fi
 
 
 mkdir $PROJECT_NAME
+log_folder_creation "$PROJECT_NAME"
 cd $PROJECT_NAME
+echo "changed pwd to $(pwd)"
 
 mkdir src
+log_folder_creation src
 mkdir include
+log_folder_creation include
 mkdir build
+log_folder_creation build
 mkdir bin
+log_folder_creation bin
 
 cp $MAKEFILE_PATH .
+log_file_creation makefile
 cp $MAIN_FILE_PATH src
+log_file_creation main.c
+
+echo "Project creation successful!"
 
