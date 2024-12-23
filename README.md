@@ -1,25 +1,12 @@
-# initc
-Initializes a C project folder to the current directory.
+Install the program by running install.sh.
+Uninstall by running uninstall.sh.
+Update by running update.sh.
 
-The project has the following structure:
+This projects purpose is to make setting up projects easier. With one command you can make an entire project's structure.
+Usage: `initc <project-root-path> <language-name>`
 
-```
-<project-name>/
-├── bin/
-├── build/
-├── include/
-├── src/
-│   └── main.c
-└── makefile
-```
+If your preferred language is not found by initc, you can add it yourself to `~/.local/share/initc/custom`. Just make a basic project template in the language to a folder with the language as its name and mv it to `custom`.
 
-# How to install?
-1. Clone this project to `/home/<user>/scripts/` with `git@github.com:shadowlegend551/initc.git`. Create the folder `scripts` if it doesn't exist already.
-2. Append the following line to your shell's config file (~/.bashrc, ~/.cshrc, etc.): `alias initc="/home/<user/scripts/initc/initc.sh>"`. This creates a persistent alias so that you don't have to type the full path to the program every time you want to run it.
-3. This program's default shell is bash. You can change it by modifying the shebang `#!/bin/bash` in the beginning of `initc.sh`.
-4. Run with `initc <new-project-name>`.
+Currently supported languages (`language-name` in parenthesis):
+- C (c)
 
-# How to build projects?
-1. Make sure you have `make` installed.
-2. In the project's root directory run `make`.
-3. The makefile will use files inding in .c from `src/` as source files, files ending in .h from `include/` as header files. It will build them as object files to `build/`and finally link them to a `main` executable in `bin/`.
