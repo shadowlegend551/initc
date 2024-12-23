@@ -2,17 +2,26 @@
 
 TARGET_PATH=$1
 LANGUAGE=$2
+PRESET_PATH=""
 
 echo "Creating target directory..."
 mkdir -p $TARGET_PATH
 
-if ! [ -d "${HOME}/.local/share/initc/${LANGUAGE}" ]; then
-    echo "No language ${LANGUAGE} found."
+if [ -d "${HOME}/.local/share/initc/${LANGUAGE}" ]; then
+    PRESET_PATH="${HOME}/.local/share/initc/${LANGUAGE}"
+fi
+
+if [ -d "${HOME}/.local/share/initc/custom/${LANGUAGE}" ]; then
+    PRESET_PATH="${HOME}/.local/share/initc/custom/${LANGUAGE}"
+fi
+
+if [ "${PRESET_PATH}" = "" ]; then
+    echo "Didn't find language ${LANGUAGE}"
     exit
 fi
 
-echo "Copying language preset..."
-cp -r "${HOME}/.local/share/initc/${LANGUAGE}" $TARGET_PATH
+echo "Copying language preset from ${PRESET_PATH}..."
+cp -r ${PRESET_PATH}/* $TARGET_PATH
 
 echo "Finished!"
 
