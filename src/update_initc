@@ -12,6 +12,7 @@ function update_initc() {
     cd initc
     echo "Reinstalling initc..."
     ./install.sh
+    cd ..
 
     echo "Restoring custom templates..."
     mv "custom" "${HOME}/.local/share/initc"
