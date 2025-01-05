@@ -11,6 +11,9 @@ function update_initc() {
 
     cd initc
     echo "Reinstalling initc..."
+
+    # If update deletes some language presets, don't leave them in the filesystem.
+    rm -rf "${HOME}/.local/share/initc/*"
     ./install.sh
     cd ..
 
