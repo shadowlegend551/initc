@@ -15,5 +15,7 @@ function update_initc() {
     echo "Restoring custom templates..."
     mv "custom" "${HOME}/.local/share/initc"
 
+    echo "Cleaning up..."
+    rm -rf initc
     echo "Update finished!"
 }

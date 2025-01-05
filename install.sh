@@ -8,7 +8,7 @@ mkdir -p ${BIN_DIR}
 mkdir -p ${AUX_DIR}
 
 echo "Copying files over..."
-cp src/initc ${BIN_DIR}
+cp src/* ${BIN_DIR}
 cp -r resources/presets/* ${AUX_DIR}
 
 echo "Installation finished!"
