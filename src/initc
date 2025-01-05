@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./update_initc
+source "${HOME}/.local/bin/update_initc"
 
 function initialize_project() {
 TARGET_PATH=$1
