@@ -38,10 +38,10 @@ COMMAND=$1
 
 case $COMMAND in
     update)
-        update_initc()
+        update_initc
         ;;
     *)
-        initialize_project()
+        initialize_project
         ;;
 esac
 
