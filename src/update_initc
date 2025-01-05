@@ -1,0 +1,19 @@
+#!/bin/bash
+
+mkdir -p "${HOME}/.cache/initc" && cd "$HOME/.cache/initc"
+
+function update_initc() {
+    echo "Downloading the latest version from github..."
+    git clone git@github.com:shadowlegend551/initc.git
+
+    echo "Backing up custom languages..."
+    mv "${HOME}/.local/share/initc/custom" .
+
+    echo "Reinstalling initc..."
+    ./initc/install.sh
+
+    echo "Restoring custom templates..."
+    mv "custom" "${HOME}/.local/share/initc"
+
+    echo "Update finished!"
+}

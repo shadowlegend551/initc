@@ -1,27 +1,47 @@
 #!/bin/bash
 
+source ./update_initc
+
+function initialize_project() {
 TARGET_PATH=$1
 LANGUAGE=$2
-PRESET_PATH=""
+LANGUAGE_TEMPLATE_PATH=""
 
 echo "Creating target directory..."
 mkdir -p $TARGET_PATH
 
+
+echo "Looking for ${LANGUAGE} template..."
 if [ -d "${HOME}/.local/share/initc/${LANGUAGE}" ]; then
-    PRESET_PATH="${HOME}/.local/share/initc/${LANGUAGE}"
+    LANGUAGE_TEMPLATE_PATH="${HOME}/.local/share/initc/${LANGUAGE}"
 fi
 
+# Custom templates override premade ones.
 if [ -d "${HOME}/.local/share/initc/custom/${LANGUAGE}" ]; then
-    PRESET_PATH="${HOME}/.local/share/initc/custom/${LANGUAGE}"
+    LANGUAGE_TEMPLATE_PATH="${HOME}/.local/share/initc/custom/${LANGUAGE}"
 fi
 
-if [ "${PRESET_PATH}" = "" ]; then
+if [ "${LANGUAGE_TEMPLATE_PATH}" = "" ]; then
     echo "Didn't find language ${LANGUAGE}"
     exit
 fi
+echo "Template found..."
 
-echo "Copying language preset from ${PRESET_PATH}..."
-cp -r ${PRESET_PATH}/* $TARGET_PATH
+echo "Copying language template from ${LANGUAGE_TEMPLATE_PATH}..."
+cp -r ${LANGUAGE_TEMPLATE_PATH}/* $TARGET_PATH
 
 echo "Finished!"
+}
+
+
+COMMAND=$1
+
+case $COMMAND in
+    update)
+        update_initc()
+        ;;
+    *)
+        initialize_project()
+        ;;
+esac
 

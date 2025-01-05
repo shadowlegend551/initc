@@ -6,7 +6,7 @@ mv "${HOME}/.local/share/initc/custom" .
 echo "Pulling newest commit..."
 git pull git@github.com:shadowlegend551/initc.git
 
-echo "Installing the newest commit..."
+echo "Reinstalling initc..."
 ./install.sh
 
 echo "Restoring custom languages..."
